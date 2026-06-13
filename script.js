@@ -1,16 +1,16 @@
 'use strict';
 
-// ── DOM ──────────────────────────────────────────
+
 const valEl  = document.getElementById('val');
 const exprEl = document.getElementById('expr');
 
-// ── Calculator State ─────────────────────────────
+
 let displayValue  = '0';
 let firstOperand  = null;
 let operator      = null;
 let waitingForSecond = false;
 
-// ── Update Screen ────────────────────────────────
+
 function updateDisplay() {
   valEl.textContent = displayValue;
 
@@ -21,7 +21,7 @@ function updateDisplay() {
   else if (len > 9) valEl.classList.add('med');
 }
 
-// ── Input a digit or decimal point ───────────────
+
 function inputDigit(d) {
   if (waitingForSecond) {
     displayValue = d === '.' ? '0.' : d;
@@ -43,7 +43,7 @@ function inputDigit(d) {
   updateDisplay();
 }
 
-// ── Handle operator ──────────────────────────────
+
 function handleOperator(op) {
   const current = parseFloat(displayValue);
 
@@ -80,7 +80,7 @@ function handleOperator(op) {
   updateDisplay();
 }
 
-// ── Press = ──────────────────────────────────────
+
 function pressEquals() {
   if (operator === null || firstOperand === null) return;
 
@@ -108,7 +108,7 @@ function pressEquals() {
   updateDisplay();
 }
 
-// ── Arithmetic ───────────────────────────────────
+
 function calculate(a, b, op) {
   switch (op) {
     case '+': return a + b;
@@ -118,7 +118,6 @@ function calculate(a, b, op) {
   }
 }
 
-// ── Format number ────────────────────────────────
 function niceNum(n) {
   if (!isFinite(n)) return 'Error';
 
@@ -130,7 +129,7 @@ function niceNum(n) {
   return s;
 }
 
-// ── Clear ────────────────────────────────────────
+
 function clearAll() {
   displayValue = '0';
   firstOperand = null;
@@ -146,7 +145,7 @@ function clearAll() {
   updateDisplay();
 }
 
-// ── Toggle sign ──────────────────────────────────
+
 function toggleSign() {
   if (displayValue === '0' || displayValue === 'Error') return;
 
@@ -157,7 +156,7 @@ function toggleSign() {
   updateDisplay();
 }
 
-// ── Percent ──────────────────────────────────────
+
 function percent() {
   const n = parseFloat(displayValue);
 
@@ -168,7 +167,7 @@ function percent() {
   updateDisplay();
 }
 
-// ── Error ────────────────────────────────────────
+
 function showError(msg) {
   valEl.className = 'display-val err';
 
@@ -182,7 +181,7 @@ function showError(msg) {
   waitingForSecond = false;
 }
 
-// ── Backspace ────────────────────────────────────
+
 function backspace() {
   if (waitingForSecond) return;
 
@@ -199,7 +198,7 @@ function backspace() {
   updateDisplay();
 }
 
-// ── Ripple effect ────────────────────────────────
+
 function ripple(btn, e) {
   const sp = document.createElement('span');
 
@@ -209,7 +208,7 @@ function ripple(btn, e) {
 
   const sz = Math.max(r.width, r.height);
 
-  // FIXED LINE
+ 
   sp.style.cssText = `
     width:${sz}px;
     height:${sz}px;
@@ -222,7 +221,7 @@ function ripple(btn, e) {
   sp.addEventListener('animationend', () => sp.remove());
 }
 
-// ── Button Events ────────────────────────────────
+
 document.getElementById('btn-ac').addEventListener('click', e => {
   ripple(e.currentTarget, e);
   clearAll();
@@ -257,7 +256,7 @@ document.querySelectorAll('.btn.op').forEach(btn => {
   });
 });
 
-// ── Keyboard Support ─────────────────────────────
+
 document.addEventListener('keydown', e => {
 
   if (e.key >= '0' && e.key <= '9') {
@@ -280,7 +279,7 @@ document.addEventListener('keydown', e => {
     return;
   }
 
-  // FIXED LINE
+
   if (e.key === '*') {
     handleOperator('*');
     return;
@@ -313,7 +312,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ── Keyboard Hint ────────────────────────────────
+
 const kbdDiv = document.createElement('div');
 
 kbdDiv.className = 'kbd';
@@ -322,5 +321,5 @@ kbdDiv.textContent = '⌨️ keyboard · ESC = clear · ⌫ = delete';
 
 document.querySelector('.calculator').appendChild(kbdDiv);
 
-// ── Init ─────────────────────────────────────────
+
 updateDisplay();
