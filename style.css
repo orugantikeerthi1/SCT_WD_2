@@ -11,7 +11,7 @@ body {
   font-family: 'DM Mono', monospace;
 }
 
-/* subtle dot grid */
+
 body::before {
   content:'';
   position:fixed; inset:0;
@@ -34,7 +34,7 @@ body::before {
   to   { transform: scale(1);   opacity:1; }
 }
 
-/* ── Display ── */
+
 .display {
   padding: 28px 24px 20px;
   background: #111;
@@ -68,7 +68,7 @@ body::before {
 .display-val.sm   { font-size: 28px; }
 .display-val.err  { font-size: 22px; color: #ff5c5c; }
 
-/* ── Button grid ── */
+
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -90,14 +90,14 @@ body::before {
 }
 .btn:active { transform: scale(.94); filter: brightness(.85); }
 
-/* Number buttons */
+
 .btn.num {
   background: #2a2a2a;
   color: #f0ede8;
 }
 .btn.num:hover { background: #333; }
 
-/* Function buttons */
+
 .btn.func {
   background: #3a3a3a;
   color: #f0ede8;
@@ -105,7 +105,7 @@ body::before {
 }
 .btn.func:hover { background: #444; }
 
-/* Operator buttons */
+
 .btn.op {
   background: #ff6b00;
   color: #fff;
@@ -114,7 +114,7 @@ body::before {
 .btn.op:hover { background: #ff8222; }
 .btn.op.active { background: #fff; color: #ff6b00; }
 
-/* Equals */
+
 .btn.eq {
   background: #ff6b00;
   color: #fff;
@@ -122,14 +122,14 @@ body::before {
 }
 .btn.eq:hover { background: #ff8222; }
 
-/* Zero spans 2 columns */
+
 .btn.zero {
   grid-column: span 2;
   text-align: left;
   padding-left: 28px;
 }
 
-/* Ripple */
+
 .ripple {
   position: absolute;
   border-radius: 50%;
@@ -140,7 +140,7 @@ body::before {
 }
 @keyframes rpl { to { transform: scale(5); opacity: 0; } }
 
-/* Keyboard hint */
+
 .kbd {
   text-align: center;
   padding: 10px 0 14px;
